@@ -33,17 +33,20 @@ st.title("Sanger-QC: A quality control tool for sanger sequencing data.")
 st.markdown("""
 ## How to Use
 1. **Upload ABI files**:
-   - Click the "Upload ABI files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
+   - Drag and drop or click the "Browse files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
 2. **Set Quality Score Threshold**:
    - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 20.
-3. **Start Processing**:
-   - Click the "Process" button to start processing all uploaded files. Sequences with quality scores below the threshold will be replaced with `-` in the resulting FASTA files.
-4. **Download Results**:
+3. **Choose Replacement Character**:
+   - Select whether to replace low-quality bases with `-` or `N`.
+4. **Start Processing**:
+   - Click the "Process" button to start processing all uploaded files. Sequences with quality scores below the threshold will be replaced with the chosen character in the resulting FASTA files.
+5. **Download Results**:
    - Once processing is complete, a button to download a ZIP file containing the resulting FASTA files will appear. Click this button to download the ZIP file.
 """)
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
-quality_threshold = st.number_input("Quality Score Threshold", min_value=0, max_value=50, value=20)
+quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=20)
+replacement_char = st.radio("Replacement Character for Low-Quality Bases", ("-", "N"))
 
 if st.button("Process"):
     if not uploaded_files:
@@ -58,7 +61,7 @@ if st.button("Process"):
                     f.write(uploaded_file.getbuffer())
 
                 output_file = os.path.join(temp_dir, os.path.splitext(uploaded_file.name)[0] + "_modified.fasta")
-                error_message = abi_to_fasta(abi_path, output_file, quality_threshold)
+                error_message = abi_to_fasta(abi_path, output_file, quality_threshold, replacement_char)
                 if error_message:
                     error_messages.append(error_message)
                 else:
@@ -82,4 +85,3 @@ if st.button("Process"):
                     file_name="filtered_sequences.zip",
                     mime="application/zip"
                 )
-
