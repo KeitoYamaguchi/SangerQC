@@ -36,8 +36,8 @@ st.markdown("""
    - Click the "Browse files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
 2. **Set Quality Score Threshold**:
    - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 20.
-3. **Choose Replacement Character**:
-   - Select whether to replace low-quality bases with `-` or `N`.
+3. **Set Replacement Character**:
+   - Enter the character to replace low-quality bases. The default is `-`.
 4. **Start Processing**:
    - Click the "Process" button to start processing all uploaded files. Sequences with quality scores below the threshold will be replaced with the chosen character in the resulting FASTA files.
 5. **Download Results**:
@@ -46,7 +46,7 @@ st.markdown("""
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
 quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=20)
-replacement_char = st.radio("Replacement Character for Low-Quality Bases", ["_", "N"])
+replacement_char = st.text_input("Replacement Character for Low-Quality Bases", value="-")
 
 if st.button("Process"):
     if not uploaded_files:
