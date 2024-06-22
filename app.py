@@ -46,7 +46,7 @@ st.markdown("""
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
 quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=20)
-replacement_char = st.radio("Replacement Character for Low-Quality Bases", ("-", "N"))
+replacement_char = st.radio("Replacement Character for Low-Quality Bases", ["-", "N"])
 
 if st.button("Process"):
     if not uploaded_files:
