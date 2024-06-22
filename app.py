@@ -7,7 +7,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from tempfile import TemporaryDirectory
 
-def abi_to_fasta(abi_file, output_file, quality_threshold=20):
+def abi_to_fasta(abi_file, output_file, quality_threshold=20, replacement_char="-"):
     try:
         record = SeqIO.read(abi_file, "abi")
     except Exception as e:
@@ -16,7 +16,7 @@ def abi_to_fasta(abi_file, output_file, quality_threshold=20):
     modified_seq = ""
     for letter, score in zip(record.seq, record.letter_annotations["phred_quality"]):
         if score < quality_threshold:
-            modified_seq += "-"
+            modified_seq += replacement_char
         else:
             modified_seq += letter
 
@@ -33,7 +33,7 @@ st.title("Sanger-QC: A quality control tool for sanger sequencing data.")
 st.markdown("""
 ## How to Use
 1. **Upload ABI files**:
-   - Drag and drop or click the "Browse files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
+   - Click the "Browse files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
 2. **Set Quality Score Threshold**:
    - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 20.
 3. **Choose Replacement Character**:
@@ -46,7 +46,7 @@ st.markdown("""
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
 quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=20)
-replacement_char = st.radio("Replacement Character for Low-Quality Bases", ["ー", "N"])
+replacement_char = st.radio("Replacement Character for Low-Quality Bases", ["-", "N"])
 
 if st.button("Process"):
     if not uploaded_files:
