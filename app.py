@@ -1,12 +1,11 @@
-import streamlit as st
 import os
+import streamlit as st
 import zipfile
 from io import BytesIO
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from tempfile import TemporaryDirectory
-
 def abi_to_fasta(abi_file, output_file, quality_threshold=20):
     try:
         record = SeqIO.read(abi_file, "abi")
@@ -28,10 +27,10 @@ def abi_to_fasta(abi_file, output_file, quality_threshold=20):
 
     return None
 
-st.title("ABI to FASTA Converter")
+st.title("Sanger-QC: A quality control tool for sanger sequencing data.")
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
-quality_threshold = st.number_input("Quality Score Threshold", min_value=0, max_value=50, value=20)
+quality_threshold = st.number_input("Quality Score Threshold to be ", min_value=0, max_value=50, value=20)
 
 if st.button("Process"):
     if not uploaded_files:
@@ -44,14 +43,14 @@ if st.button("Process"):
                 abi_path = os.path.join(temp_dir, uploaded_file.name)
                 with open(abi_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
-                
+
                 output_file = os.path.join(temp_dir, os.path.splitext(uploaded_file.name)[0] + "_modified.fasta")
                 error_message = abi_to_fasta(abi_path, output_file, quality_threshold)
                 if error_message:
                     error_messages.append(error_message)
                 else:
                     output_files.append(output_file)
-            
+
             if error_messages:
                 for error_message in error_messages:
                     st.error(error_message)
@@ -67,6 +66,6 @@ if st.button("Process"):
                 st.download_button(
                     label="Download All Results (ZIP)",
                     data=zip_buffer,
-                    file_name="modified_sequences.zip",
+                    file_name="filtered_sequences.zip",
                     mime="application/zip"
                 )
