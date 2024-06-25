@@ -86,4 +86,4 @@ if st.button("Process"):
                     mime="application/zip"
                 )
 st.markdown("---")
-st.markdown("For any questions or support, please contact: [your_email@example.com](mailto:your_email@example.com)")
+st.markdown("For any questions or support, please contact: [yamaguchi.keito.y0@gmail.com](mailto:yamaguchi.keito.y0@gmail.com)")
