@@ -85,3 +85,5 @@ if st.button("Process"):
                     file_name="filtered_sequences.zip",
                     mime="application/zip"
                 )
+st.markdown("---")
+st.markdown("For any questions or support, please contact: [your_email@example.com](mailto:your_email@example.com)")
