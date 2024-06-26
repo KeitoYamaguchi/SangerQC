@@ -39,7 +39,7 @@ st.markdown("""
 3. **Set Replacement Character**:
    - Enter the character to replace low-quality bases. The default is `-`.
 4. **Start Processing**:
-   - Click the "Process" button to start processing all uploaded files. Sequences with quality scores below the threshold will be replaced with the chosen character in the resulting FASTA files.
+   - Click the "Process" button to start processing all uploaded files. Nucleotides with quality scores below the threshold will be replaced with the chosen character in the resulting FASTA files.
 5. **Download Results**:
    - Once processing is complete, a button to download a ZIP file containing the resulting FASTA files will appear. Click this button to download the ZIP file.
 """)
