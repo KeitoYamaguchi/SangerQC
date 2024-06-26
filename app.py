@@ -7,7 +7,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from tempfile import TemporaryDirectory
 
-def abi_to_fasta(abi_file, output_file, quality_threshold=20, replacement_char="-"):
+def abi_to_fasta(abi_file, output_file, quality_threshold=30, replacement_char="-"):
     try:
         record = SeqIO.read(abi_file, "abi")
     except Exception as e:
@@ -35,7 +35,7 @@ st.markdown("""
 1. **Upload ABI files**:
    - Click the "Browse files" button and select the ABI files (.ab1) you want to process. You can upload multiple files at once.
 2. **Set Quality Score Threshold**:
-   - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 20.
+   - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 30.
 3. **Set Replacement Character**:
    - Enter the character to replace low-quality bases. The default is `-`.
 4. **Start Processing**:
@@ -45,7 +45,7 @@ st.markdown("""
 """)
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
-quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=20)
+quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=30)
 replacement_char = st.text_input("Replacement Character for Low-Quality Bases", value="-")
 
 if st.button("Process"):
