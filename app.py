@@ -7,7 +7,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
 from tempfile import TemporaryDirectory
 
-def abi_to_fasta(abi_file, output_file, quality_threshold=30, replacement_char="-"):
+def abi_to_fasta(abi_file, output_file, quality_threshold=30, replacement_char="N"):
     try:
         record = SeqIO.read(abi_file, "abi")
     except Exception as e:
@@ -37,7 +37,7 @@ st.markdown("""
 2. **Set Quality Score Threshold**:
    - Use the "Quality Score Threshold" slider to set the quality score threshold. The default value is 30.
 3. **Set Replacement Character**:
-   - Enter the character to replace low-quality bases. The default is `-`.
+   - Enter the character to replace low-quality bases. The default is `N`.
 4. **Start Processing**:
    - Click the "Process" button to start processing all uploaded files. Nucleotides with quality scores below the threshold will be replaced with the chosen character in the resulting FASTA files.
 5. **Download Results**:
@@ -46,7 +46,7 @@ st.markdown("""
 
 uploaded_files = st.file_uploader("Upload ABI files", type=["ab1"], accept_multiple_files=True)
 quality_threshold = st.slider("Quality Score Threshold", min_value=0, max_value=50, value=30)
-replacement_char = st.text_input("Replacement Character for Low-Quality Bases", value="-")
+replacement_char = st.text_input("Replacement Character for Low-Quality Bases", value="N")
 
 if st.button("Process"):
     if not uploaded_files:
