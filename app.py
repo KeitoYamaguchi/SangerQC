@@ -28,7 +28,7 @@ def abi_to_fasta(abi_file, output_file, quality_threshold=30, replacement_char="
 
     return None
 
-st.title("Sanger-QC: A quality control tool for sanger sequencing data.")
+st.title("sangerqc: A quality control tool for sanger sequencing data.")
 
 st.markdown("""
 ## How to Use
@@ -71,7 +71,6 @@ if st.button("Process"):
                 for error_message in error_messages:
                     st.error(error_message)
             else:
-                # Create a zip file of the output files
                 zip_buffer = BytesIO()
                 with zipfile.ZipFile(zip_buffer, "w") as zip_file:
                     for output_file in output_files:
@@ -87,3 +86,6 @@ if st.button("Process"):
                 )
 st.markdown("---")
 st.markdown("For any questions or support, please contact: [yamaguchi.keito.y0@gmail.com](mailto:yamaguchi.keito.y0@gmail.com)")
+
+st.markdown("### GitHub Repository")
+st.markdown("[View the project on GitHub](https://github.com/KeitoYamaguchi/sangerqc)")
