@@ -28,7 +28,7 @@ def abi_to_fasta(abi_file, output_file, quality_threshold=30, replacement_char="
 
     return None
 
-st.title("sangerqc: A quality control tool for sanger sequencing data.")
+st.title("SangerQC: A quality control tool for sanger sequencing data.")
 
 st.markdown("""
 ## How to Use
