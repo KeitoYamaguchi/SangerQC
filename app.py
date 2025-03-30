@@ -88,4 +88,4 @@ st.markdown("---")
 st.markdown("For any questions or support, please contact: [yamaguchi.keito.y0@gmail.com](mailto:yamaguchi.keito.y0@gmail.com)")
 
 st.markdown("### GitHub Repository")
-st.markdown("[View the project on GitHub](https://github.com/KeitoYamaguchi/sangerqc)")
+st.markdown("[View the project on GitHub](https://github.com/KeitoYamaguchi/SangerQC)")

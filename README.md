@@ -1,7 +1,7 @@
-# sangerqc: Quality Control Tool for Sanger Sequencing Data
+# SangerQC: Quality Control Tool for Sanger Sequencing Data
 
 ## Overview
-sangerqc is a web application built using Streamlit that provides a quality control tool for Sanger sequencing data. The application allows users to upload ABI files, set quality score thresholds, and generate modified FASTA files with low-quality bases replaced by a specified character. Users can download the processed results in a ZIP file.
+SangerQC is a web application built using Streamlit that provides a quality control tool for Sanger sequencing data. The application allows users to upload ABI files, set quality score thresholds, and generate modified FASTA files with low-quality bases replaced by a specified character. Users can download the processed results in a ZIP file.
 
 ## Features
 - Upload multiple ABI files (.ab1) for processing.
@@ -13,7 +13,7 @@ sangerqc is a web application built using Streamlit that provides a quality cont
 
 ### Run without installation
 You can use the application without installation by visiting the following link:  
-[sangerqc on Streamlit](https://sangerqc.streamlit.app/)
+[SangerQC on Streamlit](https://sangerqc.streamlit.app/)
 
 ### Run locally
 1. Run the application:
